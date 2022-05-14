@@ -1,5 +1,6 @@
 package com.jiangnan.controller;
 
+import com.jiangnan.common.Response;
 import com.jiangnan.domain.User;
 import com.jiangnan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ public class MyController {
     private UserService userService;
 
     @GetMapping("/hello")
-    public String test() {
-        return "hello";
+    public Response<String> test() {
+        return Response.of("hello");
     }
 
     @GetMapping("/getUser")
-    public User getUser(@RequestParam int id) {
-        return userService.getById(id);
+    public Response<User> getUser(@RequestParam int id) {
+        return Response.of(userService.getById(id));
     }
 }
