@@ -29,4 +29,12 @@ public class Response<T> {
         response.setMessage(codeEnum.getMessage());
         return response;
     }
+
+    public static <T> Response<T> fail(int code, String message) {
+        Response<T> response = new Response<>();
+        response.setSuccess(false);
+        response.setCode(code);
+        response.setMessage(message);
+        return response;
+    }
 }
