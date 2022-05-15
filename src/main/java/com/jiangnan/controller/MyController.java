@@ -1,6 +1,7 @@
 package com.jiangnan.controller;
 
 import com.jiangnan.common.Response;
+import com.jiangnan.common.UserInfoHolder;
 import com.jiangnan.domain.User;
 import com.jiangnan.service.MyService;
 import com.jiangnan.service.UserService;
@@ -30,6 +31,7 @@ public class MyController {
     @GetMapping("/getUser")
     public Response<User> getUser(@Min(value = 0, message = "min value is 10") @RequestParam int id) {
 //        return Response.of(userService.getById(id));
+        System.out.println(UserInfoHolder.getLoginInfo().getToken());
         return Response.of(myService.getUser(id));
     }
 }
