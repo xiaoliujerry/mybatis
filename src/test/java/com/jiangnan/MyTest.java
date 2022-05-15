@@ -4,6 +4,7 @@ import com.jiangnan.designpattern.handle.Handle;
 import com.jiangnan.designpattern.handle.HandleAdapter;
 import com.jiangnan.designpattern.processor.Step1;
 import com.jiangnan.designpattern.processor.Step2;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+@Slf4j
 public class MyTest {
 
     @Test
@@ -68,4 +70,23 @@ public class MyTest {
         countMap.entrySet().stream().sorted((entry1, entry2) -> entry2.getValue() - entry1.getValue()).limit(2)
                 .map(Map.Entry::getKey).forEach(System.out::println);
     }
+
+    @Test
+    public void testParallel() {
+        List<Integer> nums = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            nums.add(i);
+        }
+        try {
+            nums.parallelStream().forEach(num -> {
+                System.out.println(Thread.currentThread().getName());
+                if (num == 55) {
+                    int result = num / 0;
+                }
+            });
+        } catch (Exception e) {
+//            log.info("error", e);
+        }
+    }
+
 }
