@@ -4,3 +4,8 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql://localhost:3306/mydb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+
