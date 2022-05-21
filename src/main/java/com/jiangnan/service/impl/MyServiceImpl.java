@@ -1,5 +1,6 @@
 package com.jiangnan.service.impl;
 
+import com.jiangnan.annotation.MyComponent;
 import com.jiangnan.domain.User;
 import com.jiangnan.mapper.UserMapper;
 import com.jiangnan.service.MyService;
@@ -8,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 @Slf4j
+@MyComponent
 public class MyServiceImpl implements MyService {
 
     @Autowired
