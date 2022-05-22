@@ -8,7 +8,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
+//@Component
 public class MyAop {
 
     @Pointcut("execution(* com.jiangnan.service.*.*(..))")

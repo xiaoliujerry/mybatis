@@ -4,6 +4,7 @@ import com.jiangnan.common.Response;
 import com.jiangnan.common.UserInfoHolder;
 import com.jiangnan.domain.User;
 import com.jiangnan.service.MyService;
+import com.jiangnan.service.TestService;
 import com.jiangnan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -23,8 +24,12 @@ public class MyController {
     @Autowired
     private MyService myService;
 
+    @Autowired
+    private TestService testService;
+
     @GetMapping("/hello")
     public Response<String> test() {
+        testService.test();
         return Response.of("hello");
     }
 
