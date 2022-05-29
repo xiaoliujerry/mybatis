@@ -3,6 +3,7 @@ package com.jiangnan.interceptor;
 import com.jiangnan.common.LoginInfo;
 import com.jiangnan.common.UserInfoHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,6 +19,7 @@ public class MyInterceptor implements HandlerInterceptor {
         LoginInfo loginInfo = new LoginInfo();
         loginInfo.setToken(token);
         UserInfoHolder.setLoginInfo(loginInfo);
+        MDC.put("traceId", request.getHeader("traceId"));
         return true;
     }
 
@@ -29,5 +31,6 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         UserInfoHolder.remove();
+        MDC.clear();
     }
 }

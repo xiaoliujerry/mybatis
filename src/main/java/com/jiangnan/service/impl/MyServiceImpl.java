@@ -18,7 +18,7 @@ public class MyServiceImpl implements MyService {
     private UserMapper userMapper;
 
     @Override
-    @Cacheable(value = "USER", keyGenerator = "userGenerator")
+//    @Cacheable(value = "USER", keyGenerator = "userGenerator")
     public User getUser(int id) {
         log.info("getUser + id: " + id);
         return userMapper.selectById(id);
