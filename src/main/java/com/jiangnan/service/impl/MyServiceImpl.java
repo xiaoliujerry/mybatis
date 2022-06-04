@@ -10,6 +10,7 @@ import org.redisson.api.RReadWriteLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
@@ -41,5 +42,10 @@ public class MyServiceImpl implements MyService {
         if (lock) {
             System.out.println("get lock!");
         }
+    }
+
+//    @Scheduled(fixedRate = 2, timeUnit = TimeUnit.SECONDS)
+    public void schedule() {
+        System.out.println("schedule...");
     }
 }
