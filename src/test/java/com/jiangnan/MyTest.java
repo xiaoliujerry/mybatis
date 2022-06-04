@@ -1,5 +1,6 @@
 package com.jiangnan;
 
+import com.google.common.collect.Lists;
 import com.jiangnan.designpattern.handle.Handle;
 import com.jiangnan.designpattern.handle.HandleAdapter;
 import com.jiangnan.designpattern.processor.Step1;
@@ -8,10 +9,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -89,4 +93,20 @@ public class MyTest {
         }
     }
 
+    @Test
+    public void test1() {
+        List<Integer> nums = Lists.newArrayList();
+        for (int i = 0; i < 50; i++) {
+            nums.add(i);
+        }
+//        ArrayList<Integer> result = nums.stream().map(i -> i * i).collect(ArrayList::new, List::add, List::addAll);
+//        nums.stream().map(i -> i * i).collect(HashMap::new, (map, i) -> map.put(i, 1), Map::putAll);
+//        Collector.of(ConcurrentHashMap::new, (map, i) -> map.put(i, 1), (map1, map2) -> {
+//            map1.putAll(map2);
+//            return map1;
+//        }, Collector.Characteristics.CONCURRENT, Collector.Characteristics.UNORDERED);
+        nums.stream().map(i -> i * i).collect(
+        Collector.of(HashMap::new, (map, i) -> map.put(i, 1), (map1, map2) -> new HashMap<>()
+                )).forEach((k, v) -> System.out.println(k + " : " + v));
+    }
 }
