@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedisConfig {
 
-    @Bean
+    @Bean(destroyMethod = "shutdown")
     public RedissonClient getRedissionClient() {
         Config config = new Config();
         config.useSingleServer()
